@@ -23,6 +23,14 @@
   </header>
   <main>
     <noscript><p class="error">Enable JavaScript to use the local hand scorer.</p></noscript>
+    <details id="scoring-reference" class="panel scoring-reference">
+      <summary><span class="show-reference">Show scoring table</span><span class="hide-reference">Hide scoring table</span></summary>
+      <p class="hint">All 81 fans and a Unicode example hand, from the rules file.
+        <a href="/rules">Read the full rules and combination clarifications.</a></p>
+      <div class="reference-content" role="region" aria-label="Scoring reference tables" tabindex="0">
+        {{ scoring_reference }}
+      </div>
+    </details>
     <section class="panel examples" aria-label="Examples">
       <label for="example">Start from an example</label>
       <select id="example"></select>

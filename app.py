@@ -4,14 +4,26 @@ import os
 from pathlib import Path
 
 from flask import Flask, jsonify, render_template, send_from_directory
+from markdown import markdown
+from markupsafe import Markup
 
 app = Flask(__name__)
 ROOT = Path(__file__).resolve().parent
 
 
+def scoring_reference():
+    source = (ROOT / "RULES.md").read_text(encoding="utf-8")
+    _, start, remainder = source.partition("<!-- scoring-reference:start -->")
+    section, end, _ = remainder.partition("<!-- scoring-reference:end -->")
+    if not start or not end:
+        raise ValueError("RULES.md must contain the scoring-reference start/end markers")
+    # Only repository-authored documentation is rendered, never user hand input.
+    return Markup(markdown(section, extensions=["tables"]))
+
+
 @app.get("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.html", scoring_reference=scoring_reference())
 
 
 @app.get("/health")

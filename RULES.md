@@ -90,116 +90,191 @@ A complete winning hand state consists of:
 
 ---
 
+<!-- scoring-reference:start -->
+
 ## 4. MIL 2023 Fan Table & Exclusions
 
-Each entry defines `Fan ID`, `Points`, `Condition`, and `Excludes` (fan IDs that cannot co-score with it).
+This is the `workspace-2023-v1` project profile, not independently certified MIL
+scoring. Each row lists the fan, its points, its condition, and its explicit
+exclusions. Section 5 governs symmetric/scoped exclusions, inventory tiers, and
+Count-Once; compatible points are not simply the sum of all matching rows.
+Flowers never count toward the 8-point minimum.
+
+**Notation:** `M` = declared sets; `S` = suited tiles; `H` = honors (winds/dragons);
+`Term` = suited 1s/9s; `Simp` = suited 2–8; `Orph` = terminals and honors.
+Suit/group codes `C`, `B`, `D`, `W`, `G` mean characters, bamboo, dots, winds,
+and dragons. `Green` = 2s, 3s, 4s, 6s, 8s, Green Dragon;
+`Rev` = 2s, 4s, 5s, 6s, 8s, 9s, 1p, 2p, 3p, 4p, 5p, 8p, 9p, White Dragon.
+
+### Worked example: 25 points
+
+> 🀇🀈🀉 🀊🀋🀌 🀍🀎🀏 🀙🀚🀛 🀝🀝
+
+Short codes: `123m 456m 789m 123p 55p`.
+**Self-drawn winning tile: 🀝 (5p).** All four chows and the pair are concealed;
+there are no declared sets, flowers, or event flags. Seat and prevalent wind are
+East. Removing the winning 5p leaves a sole structural wait on 5p.
+
+| Awarded fan | Points | Why it scores |
+| --- | ---: | --- |
+| Pure Straight | 16 | `123m`, `456m`, and `789m`. |
+| Fully Concealed Hand | 4 | Self-drawn with no exposed declarations; includes Self Drawn. |
+| All Chows | 2 | Four chows and a suited pair; includes No Honors. |
+| Mixed Double Chow | 1 | `123m` and `123p`; the extra chow is compatible with the straight. |
+| One Voided Suit | 1 | No bamboo tiles. |
+| Single Wait | 1 | Only 5p completes the hand, completing the pair. |
+| **Total** | **25** | **25 non-flower points: qualifies for the 8-point minimum.** |
+
+The same tiles won by discard score **23** instead: Concealed Hand (2) replaces
+Fully Concealed Hand (4), and the pair is discard-completed.
 
 ### 4.1 88 Points
-* `BIG_FOUR_WINDS` (88): 4 pungs or kongs of winds (`27..30`). Excludes: `BIG_THREE_WINDS`, `ALL_PUNGS`, `PREVALENT_WIND`, `SEAT_WIND`, `PUNG_OF_TERMINALS_OR_HONORS`.
-* `BIG_THREE_DRAGONS` (88): 3 pungs or kongs of dragons (`31..33`). Excludes: `LITTLE_THREE_DRAGONS`, `TWO_DRAGONS`, `DRAGON_PUNG`.
-* `ALL_GREEN` (88): All tiles in the hand belong to `Green`. Excludes: `SEVEN_PAIRS`, `HALF_FLUSH`, `ONE_VOIDED_SUIT`.
-* `NINE_GATES` (88): Concealed hand ($M = 0$) in a single suit with `1112345678999` plus any 1 tile of the same suit. Excludes: `FULL_FLUSH`, `HALF_FLUSH`, `CONCEALED_HAND`, `FULLY_CONCEALED_HAND`, `ONE_VOIDED_SUIT`, `NO_HONORS`.
-* `FOUR_KONGS` (88): 4 kongs in the hand. Excludes: `THREE_KONGS`, `TWO_CONCEALED_KONGS`, `TWO_MELDED_KONGS`, `CONCEALED_KONG`, `MELDED_KONG`, `ALL_PUNGS`, `SINGLE_WAIT`, `FOUR_CONCEALED_PUNGS`, `THREE_CONCEALED_PUNGS`, `TWO_CONCEALED_PUNGS`.
-* `SEVEN_SHIFTED_PAIRS` (88): Concealed hand ($M = 0$) of 7 pairs in a single suit with 7 consecutive ranks. Excludes: `SEVEN_PAIRS`, `FULL_FLUSH`, `HALF_FLUSH`, `CONCEALED_HAND`, `FULLY_CONCEALED_HAND`, `ONE_VOIDED_SUIT`, `NO_HONORS`.
-* `THIRTEEN_ORPHANS` (88): Concealed hand ($M = 0$) containing all 13 tiles of `Orph` plus 1 duplicate from `Orph`. Excludes: `ALL_TERMINALS_AND_HONORS`, `ALL_TYPES`, `OUTSIDE_HAND`, `CONCEALED_HAND`, `FULLY_CONCEALED_HAND`, `SINGLE_WAIT`.
+
+| Fan ID | Points | Condition | Excludes |
+| --- | ---: | --- | --- |
+| `BIG_FOUR_WINDS` | 88 | 4 pungs or kongs of winds (`27..30`). | `BIG_THREE_WINDS`, `ALL_PUNGS`, `PREVALENT_WIND`, `SEAT_WIND`, `PUNG_OF_TERMINALS_OR_HONORS` |
+| `BIG_THREE_DRAGONS` | 88 | 3 pungs or kongs of dragons (`31..33`). | `LITTLE_THREE_DRAGONS`, `TWO_DRAGONS`, `DRAGON_PUNG` |
+| `ALL_GREEN` | 88 | All tiles in the hand belong to `Green`. | `SEVEN_PAIRS`, `HALF_FLUSH`, `ONE_VOIDED_SUIT` |
+| `NINE_GATES` | 88 | Concealed hand (`M = 0`) in a single suit with `1112345678999` plus any 1 tile of the same suit. | `FULL_FLUSH`, `HALF_FLUSH`, `CONCEALED_HAND`, `FULLY_CONCEALED_HAND`, `ONE_VOIDED_SUIT`, `NO_HONORS` |
+| `FOUR_KONGS` | 88 | 4 kongs in the hand. | `THREE_KONGS`, `TWO_CONCEALED_KONGS`, `TWO_MELDED_KONGS`, `CONCEALED_KONG`, `MELDED_KONG`, `ALL_PUNGS`, `SINGLE_WAIT`, `FOUR_CONCEALED_PUNGS`, `THREE_CONCEALED_PUNGS`, `TWO_CONCEALED_PUNGS` |
+| `SEVEN_SHIFTED_PAIRS` | 88 | Concealed hand (`M = 0`) of 7 pairs in a single suit with 7 consecutive ranks. | `SEVEN_PAIRS`, `FULL_FLUSH`, `HALF_FLUSH`, `CONCEALED_HAND`, `FULLY_CONCEALED_HAND`, `ONE_VOIDED_SUIT`, `NO_HONORS` |
+| `THIRTEEN_ORPHANS` | 88 | Concealed hand (`M = 0`) containing all 13 tiles of `Orph` plus 1 duplicate from `Orph`. | `ALL_TERMINALS_AND_HONORS`, `ALL_TYPES`, `OUTSIDE_HAND`, `CONCEALED_HAND`, `FULLY_CONCEALED_HAND`, `SINGLE_WAIT` |
 
 ### 4.2 64 Points
-* `ALL_TERMINALS` (64): 4 pungs/kongs and pair all composed of `Term`. Excludes: `ALL_TERMINALS_AND_HONORS`, `SEVEN_PAIRS`, `TRIPLE_PUNG`, `ALL_PUNGS`, `OUTSIDE_HAND`, `DOUBLE_PUNG`, `PUNG_OF_TERMINALS_OR_HONORS`, `NO_HONORS`.
-* `LITTLE_FOUR_WINDS` (64): 3 pungs/kongs of winds plus a pair of the 4th wind. Excludes: `BIG_THREE_WINDS`, `PUNG_OF_TERMINALS_OR_HONORS`.
-* `LITTLE_THREE_DRAGONS` (64): 2 pungs/kongs of dragons plus a pair of the 3rd dragon. Excludes: `TWO_DRAGONS`, `DRAGON_PUNG`.
-* `ALL_HONORS` (64): 4 pungs/kongs and pair all composed of honor tiles (`H`). Excludes: `ALL_TERMINALS_AND_HONORS`, `SEVEN_PAIRS`, `ALL_PUNGS`, `HALF_FLUSH`, `OUTSIDE_HAND`, `ONE_VOIDED_SUIT`, `PUNG_OF_TERMINALS_OR_HONORS`.
-* `FOUR_CONCEALED_PUNGS` (64): 4 concealed pungs or kongs. Excludes: `THREE_CONCEALED_PUNGS`, `TWO_CONCEALED_PUNGS`, `ALL_PUNGS`, `CONCEALED_HAND`, `FULLY_CONCEALED_HAND`.
-* `PURE_TERMINAL_CHOWS` (64): Single suit with two `123` chows, two `789` chows, and a pair of `5`s. Excludes: `FULL_FLUSH`, `HALF_FLUSH`, `ALL_CHOWS`, `PURE_DOUBLE_CHOW`, `TWO_TERMINAL_CHOWS`, `ONE_VOIDED_SUIT`, `NO_HONORS`.
+
+| Fan ID | Points | Condition | Excludes |
+| --- | ---: | --- | --- |
+| `ALL_TERMINALS` | 64 | 4 pungs/kongs and pair all composed of `Term`. | `ALL_TERMINALS_AND_HONORS`, `SEVEN_PAIRS`, `TRIPLE_PUNG`, `ALL_PUNGS`, `OUTSIDE_HAND`, `DOUBLE_PUNG`, `PUNG_OF_TERMINALS_OR_HONORS`, `NO_HONORS` |
+| `LITTLE_FOUR_WINDS` | 64 | 3 pungs/kongs of winds plus a pair of the 4th wind. | `BIG_THREE_WINDS`, `PUNG_OF_TERMINALS_OR_HONORS` |
+| `LITTLE_THREE_DRAGONS` | 64 | 2 pungs/kongs of dragons plus a pair of the 3rd dragon. | `TWO_DRAGONS`, `DRAGON_PUNG` |
+| `ALL_HONORS` | 64 | 4 pungs/kongs and pair all composed of honor tiles (`H`). | `ALL_TERMINALS_AND_HONORS`, `SEVEN_PAIRS`, `ALL_PUNGS`, `HALF_FLUSH`, `OUTSIDE_HAND`, `ONE_VOIDED_SUIT`, `PUNG_OF_TERMINALS_OR_HONORS` |
+| `FOUR_CONCEALED_PUNGS` | 64 | 4 concealed pungs or kongs. | `THREE_CONCEALED_PUNGS`, `TWO_CONCEALED_PUNGS`, `ALL_PUNGS`, `CONCEALED_HAND`, `FULLY_CONCEALED_HAND` |
+| `PURE_TERMINAL_CHOWS` | 64 | Single suit with two `123` chows, two `789` chows, and a pair of `5`s. | `FULL_FLUSH`, `HALF_FLUSH`, `ALL_CHOWS`, `PURE_DOUBLE_CHOW`, `TWO_TERMINAL_CHOWS`, `ONE_VOIDED_SUIT`, `NO_HONORS` |
 
 ### 4.3 48 Points
-* `QUADRUPLE_CHOW` (48): 4 identical chows (same suit and ranks). Excludes: `PURE_TRIPLE_CHOW`, `TILE_HOG`, `PURE_DOUBLE_CHOW`.
-* `FOUR_PURE_SHIFTED_PUNGS` (48): 4 pungs/kongs in one suit with consecutive ranks $r, r+1, r+2, r+3$. Excludes: `PURE_SHIFTED_PUNGS`, `ALL_PUNGS`.
+
+| Fan ID | Points | Condition | Excludes |
+| --- | ---: | --- | --- |
+| `QUADRUPLE_CHOW` | 48 | 4 identical chows (same suit and ranks). | `PURE_TRIPLE_CHOW`, `TILE_HOG`, `PURE_DOUBLE_CHOW` |
+| `FOUR_PURE_SHIFTED_PUNGS` | 48 | 4 pungs/kongs in one suit with consecutive ranks `r, r+1, r+2, r+3`. | `PURE_SHIFTED_PUNGS`, `ALL_PUNGS` |
 
 ### 4.4 32 Points
-* `FOUR_SHIFTED_CHOWS` (32): 4 chows in one suit stepped by $+1$ ($r, r+1, r+2, r+3$) or $+2$ ($r, r+2, r+4, r+6$). Excludes: `PURE_SHIFTED_CHOWS`, `SHORT_STRAIGHT`, `TWO_TERMINAL_CHOWS`.
-* `THREE_KONGS` (32): 3 kongs in the hand. Excludes: `TWO_CONCEALED_KONGS`, `TWO_MELDED_KONGS`, `CONCEALED_KONG`, `MELDED_KONG`.
-* `ALL_TERMINALS_AND_HONORS` (32): 4 pungs/kongs and pair all composed of `Orph`, containing both terminals and honors. Excludes: `SEVEN_PAIRS`, `ALL_PUNGS`, `OUTSIDE_HAND`, `PUNG_OF_TERMINALS_OR_HONORS`.
+
+| Fan ID | Points | Condition | Excludes |
+| --- | ---: | --- | --- |
+| `FOUR_SHIFTED_CHOWS` | 32 | 4 chows in one suit stepped by `+1` (`r, r+1, r+2, r+3`) or `+2` (`r, r+2, r+4, r+6`). | `PURE_SHIFTED_CHOWS`, `SHORT_STRAIGHT`, `TWO_TERMINAL_CHOWS` |
+| `THREE_KONGS` | 32 | 3 kongs in the hand. | `TWO_CONCEALED_KONGS`, `TWO_MELDED_KONGS`, `CONCEALED_KONG`, `MELDED_KONG` |
+| `ALL_TERMINALS_AND_HONORS` | 32 | 4 pungs/kongs and pair all composed of `Orph`, containing both terminals and honors. | `SEVEN_PAIRS`, `ALL_PUNGS`, `OUTSIDE_HAND`, `PUNG_OF_TERMINALS_OR_HONORS` |
 
 ### 4.5 24 Points
-* `SEVEN_PAIRS` (24): Concealed hand ($M = 0$) of 7 pairs. Excludes: `ALL_GREEN`, `ALL_TERMINALS`, `ALL_HONORS`, `ALL_TERMINALS_AND_HONORS`, `ALL_EVEN`, `UPPER_TILES`, `MIDDLE_TILES`, `LOWER_TILES`, `UPPER_FOUR`, `LOWER_FOUR`, `OUTSIDE_HAND`, `CONCEALED_HAND`, `FULLY_CONCEALED_HAND`, `SINGLE_WAIT`.
-* `GREATER_HONORS_AND_KNITTED` (24): Concealed hand ($M = 0$) of 7 distinct honors and 7 distinct knitted tiles across the 3 suits. Excludes: `LESSER_HONORS_AND_KNITTED`, `ALL_TYPES`, `CONCEALED_HAND`, `FULLY_CONCEALED_HAND`.
-* `ALL_EVEN` (24): 4 pungs/kongs and pair all of even ranks (`2, 4, 6, 8`). Excludes: `SEVEN_PAIRS`, `ALL_PUNGS`, `ALL_SIMPLES`, `NO_HONORS`.
-* `FULL_FLUSH` (24): All tiles in a single suit ($S$), with no honors. Excludes: `HALF_FLUSH`, `ONE_VOIDED_SUIT`, `NO_HONORS`.
-* `PURE_TRIPLE_CHOW` (24): 3 identical chows (same suit and ranks). Excludes: `PURE_DOUBLE_CHOW`.
-* `PURE_SHIFTED_PUNGS` (24): 3 pungs/kongs in one suit with ranks $r, r+1, r+2$. Excludes: none.
-* `UPPER_TILES` (24): Every tile is suited with rank in `{7, 8, 9}`. Excludes: `SEVEN_PAIRS`, `UPPER_FOUR`, `NO_HONORS`.
-* `MIDDLE_TILES` (24): Every tile is suited with rank in `{4, 5, 6}`. Excludes: `SEVEN_PAIRS`, `ALL_SIMPLES`, `NO_HONORS`.
-* `LOWER_TILES` (24): Every tile is suited with rank in `{1, 2, 3}`. Excludes: `SEVEN_PAIRS`, `LOWER_FOUR`, `NO_HONORS`.
+
+| Fan ID | Points | Condition | Excludes |
+| --- | ---: | --- | --- |
+| `SEVEN_PAIRS` | 24 | Concealed hand (`M = 0`) of 7 pairs. | `ALL_GREEN`, `ALL_TERMINALS`, `ALL_HONORS`, `ALL_TERMINALS_AND_HONORS`, `ALL_EVEN`, `UPPER_TILES`, `MIDDLE_TILES`, `LOWER_TILES`, `UPPER_FOUR`, `LOWER_FOUR`, `OUTSIDE_HAND`, `CONCEALED_HAND`, `FULLY_CONCEALED_HAND`, `SINGLE_WAIT` |
+| `GREATER_HONORS_AND_KNITTED` | 24 | Concealed hand (`M = 0`) of 7 distinct honors and 7 distinct knitted tiles across the 3 suits. | `LESSER_HONORS_AND_KNITTED`, `ALL_TYPES`, `CONCEALED_HAND`, `FULLY_CONCEALED_HAND` |
+| `ALL_EVEN` | 24 | 4 pungs/kongs and pair all of even ranks (`2, 4, 6, 8`). | `SEVEN_PAIRS`, `ALL_PUNGS`, `ALL_SIMPLES`, `NO_HONORS` |
+| `FULL_FLUSH` | 24 | All tiles in a single suit (`S`), with no honors. | `HALF_FLUSH`, `ONE_VOIDED_SUIT`, `NO_HONORS` |
+| `PURE_TRIPLE_CHOW` | 24 | 3 identical chows (same suit and ranks). | `PURE_DOUBLE_CHOW` |
+| `PURE_SHIFTED_PUNGS` | 24 | 3 pungs/kongs in one suit with ranks `r, r+1, r+2`. | None |
+| `UPPER_TILES` | 24 | Every tile is suited with rank in `{7, 8, 9}`. | `SEVEN_PAIRS`, `UPPER_FOUR`, `NO_HONORS` |
+| `MIDDLE_TILES` | 24 | Every tile is suited with rank in `{4, 5, 6}`. | `SEVEN_PAIRS`, `ALL_SIMPLES`, `NO_HONORS` |
+| `LOWER_TILES` | 24 | Every tile is suited with rank in `{1, 2, 3}`. | `SEVEN_PAIRS`, `LOWER_FOUR`, `NO_HONORS` |
 
 ### 4.6 16 Points
-* `PURE_STRAIGHT` (16): Chows `123`, `456`, and `789` in a single suit. Excludes: `SHORT_STRAIGHT`, `TWO_TERMINAL_CHOWS`.
-* `THREE_SUITED_TERMINAL_CHOWS` (16): Two suits each have `123` and `789` chows, and the third suit provides a pair of `5`s. Excludes: `ALL_CHOWS`, `MIXED_DOUBLE_CHOW`, `TWO_TERMINAL_CHOWS`, `NO_HONORS`.
-* `PURE_SHIFTED_CHOWS` (16): 3 chows in one suit stepped by $+1$ ($r, r+1, r+2$) or $+2$ ($r, r+2, r+4$). Excludes: none.
-* `ALL_FIVES` (16): Every set and the pair contains at least one tile of rank `5`. Excludes: `ALL_SIMPLES`, `NO_HONORS`.
-* `TRIPLE_PUNG` (16): 3 pungs/kongs of the same rank across all 3 suits. Excludes: `ALL_TERMINALS`, `DOUBLE_PUNG`.
-* `THREE_CONCEALED_PUNGS` (16): 3 concealed pungs or kongs. Excludes: `TWO_CONCEALED_PUNGS`.
+
+| Fan ID | Points | Condition | Excludes |
+| --- | ---: | --- | --- |
+| `PURE_STRAIGHT` | 16 | Chows `123`, `456`, and `789` in a single suit. | `SHORT_STRAIGHT`, `TWO_TERMINAL_CHOWS` |
+| `THREE_SUITED_TERMINAL_CHOWS` | 16 | Two suits each have `123` and `789` chows, and the third suit provides a pair of `5`s. | `ALL_CHOWS`, `MIXED_DOUBLE_CHOW`, `TWO_TERMINAL_CHOWS`, `NO_HONORS` |
+| `PURE_SHIFTED_CHOWS` | 16 | 3 chows in one suit stepped by `+1` (`r, r+1, r+2`) or `+2` (`r, r+2, r+4`). | None |
+| `ALL_FIVES` | 16 | Every set and the pair contains at least one tile of rank `5`. | `ALL_SIMPLES`, `NO_HONORS` |
+| `TRIPLE_PUNG` | 16 | 3 pungs/kongs of the same rank across all 3 suits. | `ALL_TERMINALS`, `DOUBLE_PUNG` |
+| `THREE_CONCEALED_PUNGS` | 16 | 3 concealed pungs or kongs. | `TWO_CONCEALED_PUNGS` |
 
 ### 4.7 12 Points
-* `LESSER_HONORS_AND_KNITTED` (12): Concealed hand ($M = 0$) of distinct knitted tiles and honors (5 or 6 honors). Excludes: `ALL_TYPES`, `CONCEALED_HAND`, `FULLY_CONCEALED_HAND`.
-* `UPPER_FOUR` (12): Every tile is suited with rank in `{6, 7, 8, 9}`. Excludes: `SEVEN_PAIRS`, `NO_HONORS`.
-* `KNITTED_STRAIGHT` (12): Tiles forming `147` in one suit, `258` in a second suit, and `369` in the third suit. Excludes: none.
-* `LOWER_FOUR` (12): Every tile is suited with rank in `{1, 2, 3, 4}`. Excludes: `SEVEN_PAIRS`, `NO_HONORS`.
-* `BIG_THREE_WINDS` (12): 3 pungs or kongs of winds. Excludes: `PUNG_OF_TERMINALS_OR_HONORS`.
+
+| Fan ID | Points | Condition | Excludes |
+| --- | ---: | --- | --- |
+| `LESSER_HONORS_AND_KNITTED` | 12 | Concealed hand (`M = 0`) of distinct knitted tiles and honors (5 or 6 honors). | `ALL_TYPES`, `CONCEALED_HAND`, `FULLY_CONCEALED_HAND` |
+| `UPPER_FOUR` | 12 | Every tile is suited with rank in `{6, 7, 8, 9}`. | `SEVEN_PAIRS`, `NO_HONORS` |
+| `KNITTED_STRAIGHT` | 12 | Tiles forming `147` in one suit, `258` in a second suit, and `369` in the third suit. | None |
+| `LOWER_FOUR` | 12 | Every tile is suited with rank in `{1, 2, 3, 4}`. | `SEVEN_PAIRS`, `NO_HONORS` |
+| `BIG_THREE_WINDS` | 12 | 3 pungs or kongs of winds. | `PUNG_OF_TERMINALS_OR_HONORS` |
 
 ### 4.8 8 Points
-* `MIXED_STRAIGHT` (8): Chows `123`, `456`, and `789` distributed across the 3 suits. Excludes: none.
-* `REVERSIBLE_TILES` (8): All tiles in the hand belong to `Rev`. Excludes: `ONE_VOIDED_SUIT`.
-* `MIXED_TRIPLE_CHOW` (8): 3 chows of the same rank across all 3 suits. Excludes: `MIXED_DOUBLE_CHOW`.
-* `MIXED_SHIFTED_PUNGS` (8): 3 pungs/kongs across the 3 suits with ranks $r, r+1, r+2$. Excludes: none.
-* `CHICKEN_HAND` (8): Hand has 0 non-flower fan points before applying `CHICKEN_HAND`. Excludes: all other non-flower fans.
-* `LAST_TILE_DRAW` (8): Win on the last draw (`win_type == "self_draw"` and `flags.last_tile_draw`). Excludes: `SELF_DRAWN`.
-* `LAST_TILE_CLAIM` (8): Win on the last discard (`win_type == "discard"` and `flags.last_tile_claim`). Excludes: none.
-* `OUT_WITH_REPLACEMENT` (8): Win on a kong replacement draw (`win_type == "self_draw"` and `flags.out_with_replacement`). Excludes: `SELF_DRAWN`.
-* `ROBBING_THE_KONG` (8): Win by claiming a tile added to extend a pung into a kong (`win_type == "discard"` and `flags.robbing_the_kong`). Excludes: `LAST_TILE`.
+
+| Fan ID | Points | Condition | Excludes |
+| --- | ---: | --- | --- |
+| `MIXED_STRAIGHT` | 8 | Chows `123`, `456`, and `789` distributed across the 3 suits. | None |
+| `REVERSIBLE_TILES` | 8 | All tiles in the hand belong to `Rev`. | `ONE_VOIDED_SUIT` |
+| `MIXED_TRIPLE_CHOW` | 8 | 3 chows of the same rank across all 3 suits. | `MIXED_DOUBLE_CHOW` |
+| `MIXED_SHIFTED_PUNGS` | 8 | 3 pungs/kongs across the 3 suits with ranks `r, r+1, r+2`. | None |
+| `CHICKEN_HAND` | 8 | Hand has 0 non-flower fan points before applying `CHICKEN_HAND`. | All other non-flower fans |
+| `LAST_TILE_DRAW` | 8 | Win on the last draw (`win_type == "self_draw"` and `flags.last_tile_draw`). | `SELF_DRAWN` |
+| `LAST_TILE_CLAIM` | 8 | Win on the last discard (`win_type == "discard"` and `flags.last_tile_claim`). | None |
+| `OUT_WITH_REPLACEMENT` | 8 | Win on a kong replacement draw (`win_type == "self_draw"` and `flags.out_with_replacement`). | `SELF_DRAWN` |
+| `ROBBING_THE_KONG` | 8 | Win by claiming a tile added to extend a pung into a kong (`win_type == "discard"` and `flags.robbing_the_kong`). | `LAST_TILE` |
 
 ### 4.9 6 Points
-* `ALL_PUNGS` (6): 4 pungs/kongs and a pair. Excludes: none.
-* `HALF_FLUSH` (6): Tiles from exactly one suit ($S$) plus at least one honor tile ($H$). Excludes: `ALL_GREEN`, `ONE_VOIDED_SUIT`.
-* `MIXED_SHIFTED_CHOWS` (6): 3 chows across the 3 suits with ranks $r, r+1, r+2$. Excludes: none.
-* `ALL_TYPES` (6): Hand contains at least one tile from each of the 5 groups (`C`, `B`, `D`, `W`, `G`). Excludes: none.
-* `MELDED_HAND` (6): All 4 sets were declared and exposed before winning, and `win_type == "discard"`. Excludes: `SINGLE_WAIT`.
-* `TWO_CONCEALED_KONGS` (6): 2 concealed kongs. Excludes: `CONCEALED_KONG`.
-* `TWO_DRAGONS` (6): 2 pungs/kongs of dragons. Excludes: `DRAGON_PUNG`.
+
+| Fan ID | Points | Condition | Excludes |
+| --- | ---: | --- | --- |
+| `ALL_PUNGS` | 6 | 4 pungs/kongs and a pair. | None |
+| `HALF_FLUSH` | 6 | Tiles from exactly one suit (`S`) plus at least one honor tile (`H`). | `ALL_GREEN`, `ONE_VOIDED_SUIT` |
+| `MIXED_SHIFTED_CHOWS` | 6 | 3 chows across the 3 suits with ranks `r, r+1, r+2`. | None |
+| `ALL_TYPES` | 6 | Hand contains at least one tile from each of the 5 groups (`C`, `B`, `D`, `W`, `G`). | None |
+| `MELDED_HAND` | 6 | All 4 sets were declared and exposed before winning, and `win_type == "discard"`. | `SINGLE_WAIT` |
+| `TWO_CONCEALED_KONGS` | 6 | 2 concealed kongs. | `CONCEALED_KONG` |
+| `TWO_DRAGONS` | 6 | 2 pungs/kongs of dragons. | `DRAGON_PUNG` |
 
 ### 4.10 4 Points
-* `OUTSIDE_HAND` (4): Every set and the pair contains at least one tile from `Orph`. Excludes: `SEVEN_PAIRS`.
-* `FULLY_CONCEALED_HAND` (4): No exposed melds ($M_{\text{exposed}} = 0$) and `win_type == "self_draw"`. Excludes: `CONCEALED_HAND`, `SELF_DRAWN`.
-* `TWO_MELDED_KONGS` (4): 2 exposed/melded kongs. Excludes: `MELDED_KONG`.
-* `LAST_TILE` (4): `flags.fourth_copy_visible == true`. Excludes: none.
+
+| Fan ID | Points | Condition | Excludes |
+| --- | ---: | --- | --- |
+| `OUTSIDE_HAND` | 4 | Every set and the pair contains at least one tile from `Orph`. | `SEVEN_PAIRS` |
+| `FULLY_CONCEALED_HAND` | 4 | No exposed melds and `win_type == "self_draw"`. | `CONCEALED_HAND`, `SELF_DRAWN` |
+| `TWO_MELDED_KONGS` | 4 | 2 exposed/melded kongs. | `MELDED_KONG` |
+| `LAST_TILE` | 4 | `flags.fourth_copy_visible == true`. | None |
 
 ### 4.11 2 Points
-* `DRAGON_PUNG` (2): 1 pung or kong of a dragon (`31..33`). Excludes: none.
-* `PREVALENT_WIND` (2): 1 pung or kong of `prevalent_wind`. Excludes: `PUNG_OF_TERMINALS_OR_HONORS`.
-* `SEAT_WIND` (2): 1 pung or kong of `seat_wind`. Excludes: `PUNG_OF_TERMINALS_OR_HONORS`.
-* `CONCEALED_HAND` (2): No exposed melds ($M_{\text{exposed}} = 0$) and `win_type == "discard"`. Excludes: none.
-* `ALL_CHOWS` (2): 4 chows and a pair of suited tiles ($S$). Excludes: `NO_HONORS`.
-* `TILE_HOG` (2): 4 copies of a single tile ID appear in the hand without forming a kong. Excludes: `QUADRUPLE_CHOW`.
-* `DOUBLE_PUNG` (2): 2 pungs/kongs of the same rank in 2 different suits. Excludes: none.
-* `TWO_CONCEALED_PUNGS` (2): 2 concealed pungs or kongs. Excludes: none.
-* `CONCEALED_KONG` (2): 1 concealed kong. Excludes: none.
-* `ALL_SIMPLES` (2): Every tile in the hand belongs to `Simp`. Excludes: `NO_HONORS`.
+
+| Fan ID | Points | Condition | Excludes |
+| --- | ---: | --- | --- |
+| `DRAGON_PUNG` | 2 | 1 pung or kong of a dragon (`31..33`). | None |
+| `PREVALENT_WIND` | 2 | 1 pung or kong of `prevalent_wind`. | `PUNG_OF_TERMINALS_OR_HONORS` |
+| `SEAT_WIND` | 2 | 1 pung or kong of `seat_wind`. | `PUNG_OF_TERMINALS_OR_HONORS` |
+| `CONCEALED_HAND` | 2 | No exposed melds and `win_type == "discard"`. | None |
+| `ALL_CHOWS` | 2 | 4 chows and a pair of suited tiles (`S`). | `NO_HONORS` |
+| `TILE_HOG` | 2 | 4 copies of a single tile ID appear in the hand without forming a kong. | `QUADRUPLE_CHOW` |
+| `DOUBLE_PUNG` | 2 | 2 pungs/kongs of the same rank in 2 different suits. | None |
+| `TWO_CONCEALED_PUNGS` | 2 | 2 concealed pungs or kongs. | None |
+| `CONCEALED_KONG` | 2 | 1 concealed kong. | None |
+| `ALL_SIMPLES` | 2 | Every tile in the hand belongs to `Simp`. | `NO_HONORS` |
 
 ### 4.12 1 Point
-* `PURE_DOUBLE_CHOW` (1): 2 identical chows in the same suit. Excludes: none.
-* `MIXED_DOUBLE_CHOW` (1): 2 chows of the same rank in 2 different suits. Excludes: none.
-* `SHORT_STRAIGHT` (1): 2 chows in the same suit forming 6 consecutive ranks ($r..r+5$). Excludes: none.
-* `TWO_TERMINAL_CHOWS` (1): `123` and `789` chows in the same suit. Excludes: none.
-* `PUNG_OF_TERMINALS_OR_HONORS` (1): 1 pung or kong of a terminal (`Term`) or honor (`H`) not already scored as `PREVALENT_WIND`, `SEAT_WIND`, or `DRAGON_PUNG`. Excludes: none.
-* `MELDED_KONG` (1): 1 exposed/melded kong. Excludes: none.
-* `ONE_VOIDED_SUIT` (1): Tiles contain 1 or 2 numbered suits (at least one suit is absent). Excludes: none.
-* `NO_HONORS` (1): No tiles in $H$ appear in the hand. Excludes: none.
-* `EDGE_WAIT` (1): Sole tenpai completion on edge of terminal chow (`3` for `123`, `7` for `789`). Excludes: `CLOSED_WAIT`, `SINGLE_WAIT`.
-* `CLOSED_WAIT` (1): Sole tenpai completion on middle tile of chow. Excludes: `EDGE_WAIT`, `SINGLE_WAIT`.
-* `SINGLE_WAIT` (1): Sole tenpai completion on pair. Excludes: `EDGE_WAIT`, `CLOSED_WAIT`.
-* `SELF_DRAWN` (1): `win_type == "self_draw"`. Excludes: none.
+
+| Fan ID | Points | Condition | Excludes |
+| --- | ---: | --- | --- |
+| `PURE_DOUBLE_CHOW` | 1 | 2 identical chows in the same suit. | None |
+| `MIXED_DOUBLE_CHOW` | 1 | 2 chows of the same rank in 2 different suits. | None |
+| `SHORT_STRAIGHT` | 1 | 2 chows in the same suit forming 6 consecutive ranks (`r..r+5`). | None |
+| `TWO_TERMINAL_CHOWS` | 1 | `123` and `789` chows in the same suit. | None |
+| `PUNG_OF_TERMINALS_OR_HONORS` | 1 | 1 pung or kong of a terminal (`Term`) or honor (`H`) not already scored as `PREVALENT_WIND`, `SEAT_WIND`, or `DRAGON_PUNG`. | None |
+| `MELDED_KONG` | 1 | 1 exposed/melded kong. | None |
+| `ONE_VOIDED_SUIT` | 1 | Tiles contain 1 or 2 numbered suits (at least one suit is absent). | None |
+| `NO_HONORS` | 1 | No tiles in `H` appear in the hand. | None |
+| `EDGE_WAIT` | 1 | Sole tenpai completion on edge of terminal chow (`3` for `123`, `7` for `789`). | `CLOSED_WAIT`, `SINGLE_WAIT` |
+| `CLOSED_WAIT` | 1 | Sole tenpai completion on middle tile of chow. | `EDGE_WAIT`, `SINGLE_WAIT` |
+| `SINGLE_WAIT` | 1 | Sole tenpai completion on pair. | `EDGE_WAIT`, `CLOSED_WAIT` |
+| `SELF_DRAWN` | 1 | `win_type == "self_draw"`. | None |
 
 ### 4.13 Flowers
-* `FLOWER_TILES` (1 each): One point per flower or season, maximum 8.
+
+| Fan ID | Points | Condition | Excludes |
+| --- | ---: | --- | --- |
+| `FLOWER_TILES` | 1 each | One point per flower or season, maximum 8; excluded from the 8-point minimum. | None |
+
+<!-- scoring-reference:end -->
 
 ## 5. Normative executable clarifications
 

@@ -40,6 +40,32 @@ flowers, all structural winning tiles, and the chosen interpretation with
 declared openness and effective concealment. Built-in examples and an editable
 JSON input support repeatable experiments.
 
+## Scoring reference and example
+
+Open **Show scoring table** on the page to browse all 81 fans, their conditions,
+points, and exclusions without leaving your hand. The interface renders the
+[same Markdown tables in RULES.md](RULES.md#4-mil-2023-fan-table--exclusions), so
+there is no separate website copy to maintain.
+
+> 🀇🀈🀉 🀊🀋🀌 🀍🀎🀏 🀙🀚🀛 🀝🀝
+
+`123m 456m 789m 123p 55p` — **self-drawn on 🀝 (5p)**, all sets and the pair
+concealed, no declarations, no flowers, no event flags, East seat/prevalent wind.
+
+| Awarded fan | Points |
+| --- | ---: |
+| Pure Straight | 16 |
+| Fully Concealed Hand | 4 |
+| All Chows | 2 |
+| Mixed Double Chow | 1 |
+| One Voided Suit | 1 |
+| Single Wait | 1 |
+| **Total** | **25** |
+
+This exceeds the 8-point minimum before flowers. Winning the same hand by
+discard gives **23** instead, because Concealed Hand (2) replaces Fully Concealed
+Hand (4). The expanded reference explains the example and exclusion rules.
+
 ## JavaScript API
 
 `static/scorer.js` is an ES module usable directly in a browser or Node.js 20+.
@@ -78,4 +104,6 @@ python -m unittest discover -s tests -p 'test_*.py'
 Node's built-in runner requires no npm installation. The JavaScript suite covers
 every fan, invalid inputs, exclusions, ambiguous placements, alternative forms,
 waits, flowers, and exact combination optimization. Flask tests check the served
-page, static module, and health endpoint.
+page, static module, health endpoint, and rendered reference tables. Documentation
+checks compare all fan table values/exclusions and the Unicode example against
+the JavaScript engine.

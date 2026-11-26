@@ -70,6 +70,19 @@ input[type=checkbox] { accent-color: #155b48; width: 1rem; height: 1rem; flex-sh
 .fan-table td:last-child, .fan-table th:last-child { text-align: right; white-space: nowrap; padding-left: .5rem; }
 .fan-table small { display: block; color: #5d6b60; font-size: .7rem; }
 summary { cursor: pointer; font-weight: 650; }
+.scoring-reference .hide-reference,
+.scoring-reference[open] .show-reference { display: none; }
+.scoring-reference[open] .hide-reference { display: inline; }
+.reference-content { max-height: 65vh; overflow: auto; overscroll-behavior: contain; padding: .5rem; }
+.reference-content h3 { margin-top: 1.5rem; }
+.reference-content table { width: 100%; min-width: 640px; border-collapse: collapse; font-size: .85rem; margin: .8rem 0 1.2rem; }
+.reference-content th, .reference-content td { padding: .65rem; border: 1px solid #d6dfd3; text-align: left; vertical-align: top; }
+.reference-content th { background: #e6eddf; }
+.reference-content tbody tr:nth-child(even) { background: #f4f6ef; }
+.reference-content td:first-child { min-width: 170px; overflow-wrap: anywhere; }
+.reference-content td:nth-child(2) { white-space: nowrap; }
+.reference-content code { overflow-wrap: anywhere; }
+.reference-content blockquote { margin: 1rem 0; font-family: "Noto Sans Symbols 2", "Segoe UI Symbol", "Apple Symbols", sans-serif; font-size: 2rem; }
 .results details { margin-top: 1.3rem; }
 .results { overflow-wrap: anywhere; }
 pre { white-space: pre-wrap; font-size: .75rem; }
