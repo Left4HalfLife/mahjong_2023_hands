@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Deterministic Mahjong scoring with explicit win source, concealment, waits, and fan combinations.">
+  <title>Mahjong hand scorer</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script type="module" src="{{ url_for('static', filename='app.js') }}"></script>
+</head>
+<body>
+  <header class="page-header">
+    <div>
+      <p class="eyebrow">WORKSPACE 2023 / DETERMINISTIC SCORING</p>
+      <h1>Build a hand.<br>Understand every point.</h1>
+      <p>Choose your tiles, declarations, and winning event. All scoring runs in your browser.</p>
+    </div>
+    <nav aria-label="Documentation">
+      <a href="/rules">Rules profile</a>
+      <a href="/audit">Ambiguity audit</a>
+    </nav>
+  </header>
+  <main>
+    <noscript><p class="error">Enable JavaScript to use the local hand scorer.</p></noscript>
+    <section class="panel examples" aria-label="Examples">
+      <label for="example">Start from an example</label>
+      <select id="example"></select>
+      <button id="load-example" type="button">Load example</button>
+      <button id="clear-hand" class="quiet" type="button">Clear hand</button>
+    </section>
+    <div class="workspace">
+      <div class="builder">
+        <section class="panel" aria-labelledby="tiles-heading">
+          <div class="section-heading">
+            <h2 id="tiles-heading">1. Choose tiles</h2>
+            <span id="tile-count" class="badge"></span>
+          </div>
+          <div class="input-row">
+            <label for="entry-target">Add tiles to
+              <select id="entry-target">
+                <option value="standing">Standing hand</option>
+                <option value="chow">Declared chow</option>
+                <option value="pung">Declared pung</option>
+                <option value="kong">Declared kong</option>
+              </select>
+            </label>
+            <label class="grow" for="tile-search">Search tiles
+              <input id="tile-search" type="search" placeholder="e.g. 3m, san wan, dong, bamboo" autocomplete="off">
+            </label>
+          </div>
+          <p class="hint">English, Chinese, Pinyin (with or without tones), or short code. Each tile has four physical copies.</p>
+          <div id="tile-palette" class="tile-palette" aria-label="Available tiles"></div>
+          <p id="search-empty" class="hint" hidden>No matching tiles.</p>
+          <div id="meld-draft" class="draft" hidden>
+            <h3>Declaration in progress</h3>
+            <div id="draft-tiles" class="tile-row"></div>
+            <label id="concealed-kong-label" class="checkbox" hidden>
+              <input id="concealed-kong" type="checkbox"> Concealed kong (not claimed)
+            </label>
+            <button id="add-meld" type="button">Add declared set</button>
+            <button id="clear-draft" class="quiet" type="button">Clear draft</button>
+          </div>
+        </section>
+        <section class="panel" aria-labelledby="hand-heading">
+          <h2 id="hand-heading">2. Your hand</h2>
+          <h3>Standing tiles <span class="hint">(include the winning tile)</span></h3>
+          <div id="standing-tiles" class="tile-row" aria-label="Standing tiles"></div>
+          <p class="hint">Click a selected tile to remove it. A discard-winning tile stays here, not in a declared meld.</p>
+          <h3>Previously declared sets</h3>
+          <div id="declared-melds"></div>
+          <div class="context-grid">
+            <label for="winning-tile">Winning tile
+              <select id="winning-tile"></select>
+            </label>
+            <label for="win-type">Win source
+              <select id="win-type">
+                <option value="self_draw">Self-drawn</option>
+                <option value="discard">Discard / robbed kong</option>
+              </select>
+            </label>
+            <label for="seat-wind">Seat wind <select id="seat-wind"></select></label>
+            <label for="prevalent-wind">Prevalent wind <select id="prevalent-wind"></select></label>
+            <label for="flowers-count">Flowers / seasons
+              <input id="flowers-count" type="number" min="0" max="8" step="1" value="0">
+            </label>
+          </div>
+          <fieldset>
+            <legend>Winning events</legend>
+            <label class="checkbox"><input id="last_tile_draw" data-source="self_draw" type="checkbox"> Last wall draw</label>
+            <label class="checkbox"><input id="last_tile_claim" data-source="discard" type="checkbox"> Last discard</label>
+            <label class="checkbox"><input id="out_with_replacement" data-source="self_draw" type="checkbox"> Kong replacement draw (not a flower replacement)</label>
+            <label class="checkbox"><input id="robbing_the_kong" data-source="discard" type="checkbox"> Robbing an added kong</label>
+            <label class="checkbox"><input id="fourth_copy_visible" type="checkbox"> All three other copies of the winning tile were publicly visible</label>
+            <p class="hint">External events are your assertions. Impossible combinations are rejected; the engine cannot inspect opponents' histories.</p>
+          </fieldset>
+          <div id="input-message" role="alert" hidden></div>
+          <button id="score-hand" class="primary" type="button">Calculate points</button>
+        </section>
+        <details class="panel">
+          <summary>Advanced: import / export hand JSON</summary>
+          <p class="hint">Load a complete hand using the schema in the rules. Invalid input is never silently repaired.</p>
+          <label for="hand-json">Hand state</label>
+          <textarea id="hand-json" spellcheck="false" rows="12"></textarea>
+          <button id="export-json" type="button">Show current JSON</button>
+          <button id="import-json" type="button">Load JSON</button>
+        </details>
+      </div>
+      <aside class="panel results" aria-labelledby="result-heading">
+        <p class="eyebrow">SCORING BREAKDOWN</p>
+        <h2 id="result-heading">Your result</h2>
+        <div id="result-content" aria-live="polite"></div>
+      </aside>
+    </div>
+    <footer>
+      <p>Profile <code>workspace-2023-v1</code>. Hand points, not player payments.
+        Flowers never satisfy the 8-point minimum. This local rules interpretation is not independently MIL-certified.</p>
+      <p>No accounts. No remote scoring. No runtime AI.</p>
+    </footer>
+  </main>
+</body>
+</html>
