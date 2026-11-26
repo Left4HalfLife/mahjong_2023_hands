@@ -1,0 +1,10 @@
+.git
+.gitignore
+.venv
+__pycache__
+tests
+node_modules
+*.log
+.env
+.env.*
+copilot-worktrees
