@@ -1,6 +1,7 @@
 # mahjong_2023_hands
 
-# Chinese Official Mahjong (MCR — MIL 2023) Ruleset Specification [https://mahjong.wikidot.com/rules:chinese-official-scoring](https://mahjong.wikidot.com/rules:chinese-official-scoring)
+# Chinese Official Mahjong (MCR — MIL 2023) Ruleset Specification
+### Source: [https://mahjong.wikidot.com/rules:chinese-official-scoring](https://mahjong.wikidot.com/rules:chinese-official-scoring)
 
 ## 1. Tile Domain & Algebraic Model
 
